@@ -10,46 +10,36 @@ class Neighborhood(BaseModel):
     walking_score: float
 
 
-class Restaurant(BaseModel):
-    name: str
-    price: Literal["$", "$$", "$$$", "$$$$"]
-    cuisine: str
-    description: str
-    url: str
-
-
 class Activity(BaseModel):
     name: str
-    price: Literal["$", "$$", "$$$", "$$$$"]
+    time: Literal["morning", "afternoon", "evening", "night"]
+    price: Literal["Free", "$", "$$", "$$$", "$$$$"]
+    cost_per_person: float
+    type: Literal[
+        "restaurant",
+        "museum",
+        "park",
+        "beach",
+        "shopping",
+        "hiking",
+        "sightseeing",
+        "bar",
+        "nightclub",
+    ]
     description: str
-    type: Literal["outdoor", "indoor", "cultural", "party", "sightseeing"]
-
-
-class BarClub(BaseModel):
-    name: str
-    price: Literal["$", "$$", "$$$", "$$$$"]
-    description: str
-    url: str
+    url: str = ""
 
 
 class TravelGuide(BaseModel):
     neighborhoods: list[Neighborhood]
-    restaurants: list[Restaurant]
     activities: list[Activity]
-    bars_and_clubs: list[BarClub]
-
-
-class TimelineItem(BaseModel):
-    time: Literal["morning", "afternoon", "evening", "night"]
-    activity: Activity | Restaurant | BarClub
 
 
 class Day(BaseModel):
     day_num: int
-    timeline: list[TimelineItem]
+    timeline: list[Activity]
 
 
 class Itinerary(BaseModel):
+    areas_to_stay: list[Neighborhood]
     days: list[Day]
-    cost_low: float
-    cost_high: float

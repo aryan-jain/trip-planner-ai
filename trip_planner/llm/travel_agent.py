@@ -4,14 +4,16 @@ from langchain.output_parsers import PydanticOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 
-from trip_planner.llm.models import TravelGuide
+from trip_planner.llm.models import Itinerary, TravelGuide
 
 set_llm_cache(InMemoryCache())
 
 
 class TravelAgent:
     def __init__(self):
-        self.model = ChatOpenAI(temperature=0.5, max_tokens=5000)
+        self.model = ChatOpenAI(
+            model="gpt-3.5-turbo-1106", temperature=0.5, max_tokens=4096
+        )
 
         self.prompt = ChatPromptTemplate.from_messages(
             [
@@ -27,31 +29,36 @@ class TravelAgent:
                     "human",
                     """
                     Help me plan a trip to {destination}. I want to stay for {num_days} days. We are a group of {num_people} people.
-                    This is a {trip_type}. {additional_info}\n{format_instructions}
+                    This is a {trip_type}. {additional_info}
+                    Give me at least 3 options for areas to stay.
+                    Make sure to provide a URL for any activities that have a website.
+                    For each activity estimate a cost per person in US Dollars and put it in the cost_per_person field.\n
+                    {rec_format_instructions} 
+                    Make sure your response is valid JSON! 
                     """,
                 ),
             ],
         )
 
-        self.parser = PydanticOutputParser(pydantic_object=TravelGuide)
+        self.parser = PydanticOutputParser(pydantic_object=Itinerary)
 
-    async def get_recs(
+    def get_recs(
         self,
         destination: str,
         num_days: int,
         num_people: int,
         trip_type: str,
         additional_info: str = "",
-    ) -> TravelGuide:
+    ) -> Itinerary:
         chain = self.prompt | self.model | self.parser
-        response = chain.ainvoke(
+        response = chain.invoke(
             {
                 "destination": destination,
                 "num_days": num_days,
                 "num_people": num_people,
                 "trip_type": trip_type,
                 "additional_info": additional_info,
-                "format_instructions": self.parser.get_format_instructions(),
+                "rec_format_instructions": self.parser.get_format_instructions(),
             }
         )
-        return await response
+        return response
