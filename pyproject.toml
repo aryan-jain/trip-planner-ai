@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "trip-planner"
+version = "0.1.0"
+description = "AI-based trip planner"
+authors = ["aryan-jain <technicallyaryan@gmail.com>"]
+license = "LICENSE"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+streamlit = "^1.32.2"
+langchain = "^0.1.14"
+langchain-openai = "^0.1.1"
+python-dotenv = "^1.0.1"
+streamlit-pydantic = "^0.6.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
