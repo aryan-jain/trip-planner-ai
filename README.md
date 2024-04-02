@@ -36,3 +36,8 @@ Fill in the details of your trip in the form, following this guide:
 
 
 Hit `Submit` and the app should generate an itinerary for you.
+
+### Usage Costs
+Your specific usage costs for the OpenAI API will depend on your OpenAI plan and if you choose to switch the model from `gpt-3.5-turbo-1106` to `gpt-4` or something else.
+
+For the average person, using the tool to generate an itinerary should cost about $0.0033 or about 1 cent for every 3 itineraries you generate. 
