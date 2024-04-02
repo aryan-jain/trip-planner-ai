@@ -9,11 +9,20 @@ from trip_planner.llm.travel_agent import TravelAgent
 
 class TripDetails(BaseModel):
     destination: str = Field(
-        ..., description="The destination of the trip. E.g. 'San Diego, CA'"
+        ...,
+        description="The destination of the trip. E.g. 'San Diego, CA'",
     )
-    num_days: int = Field(..., ge=1, le=5, description="The number of days of the trip")
+    num_days: int = Field(
+        ...,
+        ge=1,
+        le=5,
+        description="The number of days of the trip",
+    )
     num_people: int = Field(
-        ..., ge=1, le=30, description="The number of people going on the trip"
+        ...,
+        ge=1,
+        le=30,
+        description="The number of people going on the trip",
     )
     trip_type: str = Field(
         ...,
