@@ -59,6 +59,7 @@ def main():
 
         st.write("Here is your itinerary:")
 
+        total_cost = 0
         st.markdown("## Areas to Stay:")
         for neighborhood in recs.areas_to_stay:
             st.markdown(f"### {neighborhood.name.title()}")
@@ -91,11 +92,15 @@ def main():
                     case "nightclub":
                         st.markdown(f"#### 🪩 {activity.name}")
                 st.markdown(f"*{activity.price}*")
+                st.write(f"Estimated cost per person: ${activity.cost_per_person:.2f}")
+                total_cost += activity.cost_per_person
                 st.write(activity.description)
                 if activity.url:
                     st.link_button(
                         "Website ⎋", activity.url, help="Open the website in a new tab"
                     )
+
+        st.subheader(f"Total estimated cost per person: ${total_cost:.2f}")
 
 
 if __name__ == "__main__":
