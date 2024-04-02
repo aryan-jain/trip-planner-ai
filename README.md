@@ -11,6 +11,7 @@ $ poetry install
 
 #### OpenAI API Key
 You will need an OpenAI API Key to run the LLM in this app. You can generate one for yourself from [here](https://platform.openai.com/).
+
 Create a `.env` file in the project directory and add the following line to it:
 ```
 OPENAI_API_KEY="<your OpenAI API Key>"
