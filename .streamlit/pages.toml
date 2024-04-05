@@ -1,0 +1,14 @@
+[[pages]]
+path = "trip_planner/app.py"
+name = "Home"
+icon = ":house:"
+
+[[pages]]
+path = "trip_planner/pages/planner.py"
+name = "Trip Planner"
+icon = ":airplane:"
+
+[[pages]]
+path = "trip_planner/pages/settings.py"
+name = "Settings"
+icon = ":gear:"

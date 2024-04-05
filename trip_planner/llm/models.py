@@ -6,7 +6,7 @@ from pydantic import BaseModel, Field
 class Neighborhood(BaseModel):
     name: str
     description: str
-    type: Literal["tourist", "local", "party", "family"]
+    type: Literal["tourist", "local", "party", "family", "other"]
     walking_score: float
 
 
@@ -25,6 +25,7 @@ class Activity(BaseModel):
         "sightseeing",
         "bar",
         "nightclub",
+        "other",
     ]
     description: str
     url: str = ""

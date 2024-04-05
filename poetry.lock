@@ -2008,6 +2008,20 @@ pymysql = ["pymysql"]
 sqlcipher = ["sqlcipher3_binary"]
 
 [[package]]
+name = "st-pages"
+version = "0.4.5"
+description = "An experimental version of Streamlit Multi-Page Apps"
+optional = false
+python-versions = ">=3.8, !=2.7.*, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*, !=3.6.*, !=3.7.*"
+files = [
+    {file = "st_pages-0.4.5-py3-none-any.whl", hash = "sha256:7cc0c9137bc2a3aba2c7918f76a9b220673b4344762544ebf5c5e56d16a6f360"},
+    {file = "st_pages-0.4.5.tar.gz", hash = "sha256:0b95b2ae53e91f9922f2f254b356e1063981b5fcc89a48c4b89011806ccda465"},
+]
+
+[package.dependencies]
+streamlit = ">=1.10.0"
+
+[[package]]
 name = "streamlit"
 version = "1.32.2"
 description = "A faster way to build and share data apps"
@@ -2390,4 +2404,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "a58643a296562fae872c789f63203409bf73f16ab0f61666e9e28b50f5c47ae3"
+content-hash = "bbfcc29848b508ffb26e379b4eb719cc30055430827429c069d3001ee0e52d6e"

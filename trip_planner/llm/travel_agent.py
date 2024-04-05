@@ -1,19 +1,45 @@
+import os
+
 from langchain.cache import InMemoryCache
 from langchain.globals import set_llm_cache
 from langchain.output_parsers import PydanticOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
+from pydantic import SecretStr
 
-from trip_planner.llm.models import Itinerary, TravelGuide
+from trip_planner.llm.models import Itinerary
 
 set_llm_cache(InMemoryCache())
 
 
+class NotAuthorizedError(Exception): ...
+
+
 class TravelAgent:
-    def __init__(self):
-        self.model = ChatOpenAI(
-            model="gpt-3.5-turbo-1106", temperature=0.5, max_tokens=4096
-        )
+    def __init__(
+        self,
+        openai_api_key: SecretStr | None = None,
+        model_name: str = "gpt-3.5-turbo-1106",
+        temperature: float = 0.5,
+        max_tokens: int = 4096,
+    ):
+        if openai_api_key is not None:
+            self.model = ChatOpenAI(
+                api_key=openai_api_key,
+                model="gpt-3.5-turbo-1106",
+                temperature=0.5,
+                max_tokens=4096,
+            )
+        elif "OPENAI_API_KEY" in os.environ:
+            self.model = ChatOpenAI(
+                model=model_name,
+                temperature=temperature,
+                max_tokens=max_tokens,
+            )
+        else:
+            raise NotAuthorizedError(
+                "OpenAI API key is required. You can either set it in the environment variable OPENAI_API_KEY or set it manually in the settings."
+            )
 
         self.prompt = ChatPromptTemplate.from_messages(
             [
