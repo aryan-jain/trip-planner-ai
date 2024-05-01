@@ -17,5 +17,6 @@ def main():
 
 if __name__ == "__main__":
     load_dotenv()
+
     show_pages_from_config()
     main()

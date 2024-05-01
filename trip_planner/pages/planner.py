@@ -116,13 +116,13 @@ def planner():
                     )
 
         st.subheader(f"Total estimated cost per person: ${total_cost:.2f}")
+        # st.link_button(
+        #     "Find Hotels",
+        #     f"https://www.google.com/travel/search?q={quote(data.destination + " hotels")}&hl=en-US",
+        #     help="Find hotels in your destination",
+        # )
         st.link_button(
-            "Find Hotels", 
-            f"https://www.google.com/travel/search?q={quote(data.destination + " hotels")}&hl=en-US",
-            help="Find hotels in your destination",
-        )
-        st.link_button(
-            "Find Flights", 
+            "Find Flights",
             f"https://www.google.com/flights?q={quote(data.destination)}&hl=en-US",
             help="Find flights to your destination",
         )
