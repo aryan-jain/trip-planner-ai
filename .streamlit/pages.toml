@@ -12,3 +12,8 @@ icon = ":airplane:"
 path = "trip_planner/pages/settings.py"
 name = "Settings"
 icon = ":gear:"
+
+[[pages]]
+path = "trip_planner/pages/trips.py"
+name = "Trips"
+icon = ":calendar:"
