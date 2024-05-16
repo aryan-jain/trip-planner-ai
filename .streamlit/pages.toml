@@ -17,3 +17,8 @@ icon = ":gear:"
 path = "trip_planner/pages/trips.py"
 name = "Trips"
 icon = ":calendar:"
+
+[[pages]]
+path = "trip_planner/pages/login.py"
+name = "Login"
+icon = ":lock:"

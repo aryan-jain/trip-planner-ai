@@ -19,6 +19,7 @@ streamlit-extras = "^0.4.2"
 alembic = "^1.13.1"
 sqlalchemy = {extras = ["asyncio"], version = "^2.0.30"}
 asyncpg = "^0.29.0"
+psycopg2 = "^2.9.9"
 
 [tool.poetry.scripts]
 trip-planner = "trip_planner.Home:main"
