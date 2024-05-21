@@ -1,6 +1,6 @@
 import streamlit as st
 from dotenv import load_dotenv
-from st_pages import show_pages_from_config
+from st_pages import Page, Section, show_pages, show_pages_from_config
 
 
 def main():
@@ -18,5 +18,45 @@ def main():
 if __name__ == "__main__":
     load_dotenv()
 
-    show_pages_from_config()
+    show_pages(
+        [
+            Page(
+                path="trip_planner/pages/login.py",
+                name="Login",
+                icon="🔑",
+            ),
+            Page(
+                path="trip_planner/app.py",
+                name="Home",
+                icon="🏠",
+            ),
+            Page(
+                path="trip_planner/pages/settings.py",
+                name="Settings",
+                icon="⚙️",
+            ),
+            Page(
+                path="trip_planner/pages/planner.py",
+                name="Trip Planner",
+                icon=":airplane:",
+            ),
+            Section(
+                name="Trips",
+                icon="📅",
+            ),
+            Page(
+                path="trip_planner/pages/trips.py",
+                name="View Trips",
+                in_section=True,
+            ),
+            Page(
+                path="trip_planner/pages/new_trip.py",
+                name="Create Trip",
+            ),
+            Page(
+                path="trip_planner/pages/trip_details.py",
+                name="Trip Details",
+            ),
+        ]
+    )
     main()

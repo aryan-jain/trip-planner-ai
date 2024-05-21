@@ -39,6 +39,7 @@ def trips():
                             },
                             "text": {"font-size": "0.9rem"},
                         },
+                        on_click=lambda t=trip: load_trip_details(t),
                     )
         else:
             st.write("You have no trips yet.")
@@ -46,6 +47,11 @@ def trips():
         st.divider()
         if st.button("Create Trip"):
             switch_page("Create Trip")
+
+
+def load_trip_details(trip):
+    st.session_state["trip"] = trip
+    switch_page("Trip Details")
 
 
 if __name__ == "__main__":
