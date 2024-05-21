@@ -26,7 +26,6 @@ def upgrade() -> None:
         sa.Column("id", UUID(as_uuid=True), primary_key=True, default=uuid.uuid4),
         sa.Column("name", sa.String(length=255), nullable=True),
         sa.Column("email", sa.Text, nullable=False, unique=True),
-        sa.Column("password", sa.String(length=255), nullable=False),
         sa.Column(
             "created_at",
             sa.TIMESTAMP(timezone=True),

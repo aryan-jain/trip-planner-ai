@@ -1,4 +1,9 @@
 [[pages]]
+path = "trip_planner/pages/login.py"
+name = "Login"
+icon = ":lock:"
+
+[[pages]]
 path = "trip_planner/app.py"
 name = "Home"
 icon = ":house:"
@@ -19,6 +24,6 @@ name = "Trips"
 icon = ":calendar:"
 
 [[pages]]
-path = "trip_planner/pages/login.py"
-name = "Login"
-icon = ":lock:"
+path = "trip_planner/pages/new_trip.py"
+name = "Create Trip"
+icon = ":heavy_plus_sign:"

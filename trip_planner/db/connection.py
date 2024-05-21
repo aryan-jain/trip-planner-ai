@@ -1,8 +1,7 @@
 import logging
 import os
-from contextlib import asynccontextmanager, contextmanager
+from contextlib import asynccontextmanager
 
-from httpx import get
 from sqlalchemy import Engine, create_engine
 from sqlalchemy.ext.asyncio import (
     AsyncEngine,
@@ -10,7 +9,7 @@ from sqlalchemy.ext.asyncio import (
     async_sessionmaker,
     create_async_engine,
 )
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import sessionmaker
 
 logger = logging.getLogger(__name__)
 
@@ -21,6 +20,8 @@ engine: AsyncEngine = create_async_engine(DATABASE_URL, echo=False, future=True)
 sync_engine: Engine = create_engine(
     DATABASE_SYNC_URL, echo=False, pool_size=10, max_overflow=0
 )
+
+session = sessionmaker(sync_engine)
 
 
 def async_session_generator() -> async_sessionmaker:
@@ -44,17 +45,3 @@ async def get_session():
         raise
     finally:
         await session.close()
-
-
-@contextmanager
-def get_sync_session():
-    # The code above is the succint version of the code below
-    with Session(sync_engine) as session:
-        session.begin()
-        try:
-            yield session
-        except Exception as e:
-            logger.error(f"Error: {e}")
-            session.rollback()
-        else:
-            session.commit()

@@ -19,7 +19,12 @@ streamlit-extras = "^0.4.2"
 alembic = "^1.13.1"
 sqlalchemy = {extras = ["asyncio"], version = "^2.0.30"}
 asyncpg = "^0.29.0"
-psycopg2 = "^2.9.9"
+psycopg2-binary = "^2.9.9"
+st-supabase-connection = "^2.0.0"
+streamlit-javascript = "^0.1.5"
+python-dateutil = "^2.9.0.post0"
+pytz = "^2024.1"
+tzlocal = "^5.2"
 
 [tool.poetry.scripts]
 trip-planner = "trip_planner.Home:main"
